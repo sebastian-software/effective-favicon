@@ -1,0 +1,50 @@
+{
+  "name": "@effective/favicon",
+  "version": "0.0.0",
+  "description": "Effective Favicon Generator",
+  "bin": {
+    "effective-favicon": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "prepare": "npm run build",
+    "format": "prettier --write src",
+    "release": "release-it"
+  },
+  "keywords": [
+    "icons",
+    "favicon",
+    "ios",
+    "android"
+  ],
+  "files": [
+    "dist"
+  ],
+  "author": {
+    "name": "Sebastian Werner",
+    "email": "s.werner@sebastian-software.de",
+    "url": "http://sebastian-software.de/werner"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebastian-software/effective-favicon.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.2",
+    "prettier": "^2.8.8",
+    "release-it": "^15.11.0",
+    "rimraf": "^5.0.1",
+    "typescript": "^5.1.6"
+  },
+  "packageManager": "pnpm@8.6.7",
+  "dependencies": {
+    "png-to-ico": "^2.1.8",
+    "pngquant-bin": "^8.0.1",
+    "sharp": "^0.32.2"
+  }
+}
