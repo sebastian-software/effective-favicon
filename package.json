@@ -7,12 +7,13 @@
   },
   "main": "dist/cli.js",
   "scripts": {
+    "check": "tsc --noEmit",
     "build": "rimraf dist && tsc",
     "prepare": "npm run build",
     "format": "prettier --write src",
     "release": "release-it",
     "pretest": "npm run build",
-    "test": "node dist/cli.js test"
+    "test": "rimraf test/*.png test/*.iso test/*-opt.svg && node dist/cli.js test"
   },
   "keywords": [
     "icons",
