@@ -5,12 +5,14 @@
   "bin": {
     "effective-favicon": "dist/index.js"
   },
-  "main": "dist/index.js",
+  "main": "dist/cli.js",
   "scripts": {
     "build": "rimraf dist && tsc",
     "prepare": "npm run build",
     "format": "prettier --write src",
-    "release": "release-it"
+    "release": "release-it",
+    "pretest": "npm run build",
+    "test": "node dist/cli.js test"
   },
   "keywords": [
     "icons",
@@ -27,6 +29,7 @@
     "url": "http://sebastian-software.de/werner"
   },
   "license": "Apache-2.0",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sebastian-software/effective-favicon.git"
@@ -36,6 +39,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.4.2",
+    "@types/pngquant-bin": "^4.0.0",
     "prettier": "^2.8.8",
     "release-it": "^15.11.0",
     "rimraf": "^5.0.1",
@@ -45,6 +49,7 @@
   "dependencies": {
     "png-to-ico": "^2.1.8",
     "pngquant-bin": "^8.0.1",
-    "sharp": "^0.32.2"
+    "sharp": "^0.32.2",
+    "svgo": "^3.0.2"
   }
 }

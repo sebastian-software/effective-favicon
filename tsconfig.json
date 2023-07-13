@@ -13,7 +13,7 @@
 
     // Create React App:
     // https://github.com/tsconfig/bases/blob/main/bases/create-react-app.json
-    "module": "esnext",
+    "module": "Node16",
     "allowJs": true,
     // To provide backwards compatibility, Node.js allows you to import most CommonJS packages with a default import.
     // This flag tells TypeScript that it's okay to use import on CommonJS modules.
@@ -21,7 +21,7 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
 
-    "moduleResolution": "node",
+    "moduleResolution": "Node16",
     "noFallthroughCasesInSwitch": true,
 
     // Sindre Sorhus
