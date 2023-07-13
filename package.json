@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Effective Favicon Generator",
   "bin": {
-    "effective-favicon": "dist/index.js"
+    "effective-favicon": "dist/cli.js"
   },
-  "main": "dist/cli.js",
+  "module": "dist/process.js",
   "scripts": {
     "check": "tsc --noEmit",
     "build": "rimraf dist && tsc",
