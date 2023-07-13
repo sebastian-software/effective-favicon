@@ -1,7 +1,6 @@
 ## Effective Favicon Generator
 
-A small generator for a modern set of typical favicons. Expected a folder of svg files (only one is okay as well) and generates the variants suggested by (
-How to Favicon in 2023: Six files that fit most needs)[https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs] automatically.
+A small generator for a modern set of typical favicons. Expected a folder of svg files (only one is okay as well) and generates the variants suggested by (How to Favicon in 2023: Six files that fit most needs)[https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs] automatically.
 
 ## Usage
 
