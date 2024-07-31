@@ -13,6 +13,9 @@
     "format": "prettier --write src",
     "release": "release-it",
     "pretest": "npm run build",
+    "update:latest": "ncu --upgrade --interactive",
+    "update:minor": "ncu --upgrade --interactive --target minor",
+    "update:pnpm": "corepack up",
     "test": "rimraf test/*.png test/*.iso test/*-opt.svg && node dist/cli.js test"
   },
   "keywords": [
@@ -40,17 +43,18 @@
   },
   "devDependencies": {
     "@types/node": "^20.4.2",
-    "@types/pngquant-bin": "^4.0.0",
-    "prettier": "^2.8.8",
-    "release-it": "^15.11.0",
-    "rimraf": "^5.0.1",
-    "typescript": "^5.1.6"
+    "@types/pngquant-bin": "^4.0.2",
+    "npm-check-updates": "^16.14.20",
+    "prettier": "^3.3.3",
+    "release-it": "^17.6.0",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.5.4"
   },
   "packageManager": "pnpm@8.15.9+sha512.499434c9d8fdd1a2794ebf4552b3b25c0a633abcee5bb15e7b5de90f32f47b513aca98cd5cfd001c31f0db454bc3804edccd578501e4ca293a6816166bbd9f81",
   "dependencies": {
     "png-to-ico": "^2.1.8",
-    "pngquant-bin": "^8.0.1",
-    "sharp": "^0.32.2",
-    "svgo": "^3.0.2"
+    "pngquant-bin": "^9.0.0",
+    "sharp": "^0.33.4",
+    "svgo": "^3.3.2"
   }
 }
