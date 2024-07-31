@@ -1,1 +1,28 @@
-<svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.41421" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m0 0h16v16h-16z" fill="#442230"/><path d="m8.025 1.621-4.597 4.596 1.061 1.061 4.596-4.597z" fill="#fff"/><path d="m11.573 5.188-4.596 4.596 1.061 1.06 4.596-4.596z" fill="#c41e54"/><g fill="#fff"><path d="m8.005 5.176-4.596 4.596 1.06 1.061 4.596-4.596z"/><path d="m11.527 8.716-4.596 4.596 1.06 1.06 4.596-4.596z"/></g></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 667 667" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <rect id="Icon-Final-Dark" serif:id="Icon Final Dark" x="0" y="0" width="666.667" height="666.667" style="fill:none;"/>
+    <clipPath id="_clip1">
+        <rect x="0" y="0" width="666.667" height="666.667"/>
+    </clipPath>
+    <g clip-path="url(#_clip1)">
+        <rect x="0" y="0" width="666.667" height="666.667" style="fill:#2a1b28;"/>
+        <g id="Logo-Dark" serif:id="Logo Dark">
+            <g>
+                <path d="M333.333,50.491l282.843,282.842l-282.843,282.843l-282.842,-282.843l282.842,-282.842Z" style="fill:#2a1b28;"/>
+            </g>
+            <g>
+                <path d="M333.333,50.491l30.642,30.641c9.106,9.106 9.106,23.892 -0,32.998l-179.134,179.134c-9.106,9.106 -23.892,9.106 -32.998,-0l-14.143,-14.142c-9.106,-9.106 -9.106,-23.892 0,-32.999l195.633,-195.632Z" style="fill:#fff;"/>
+            </g>
+            <g>
+                <path d="M357.689,216.268l14.142,14.142c9.107,9.106 9.107,23.892 0,32.998l-179.133,179.134c-9.106,9.106 -23.893,9.106 -32.999,0l-30.641,-30.641l195.633,-195.633c9.106,-9.106 23.892,-9.106 32.998,-0Z" style="fill:#fff;"/>
+            </g>
+            <g>
+                <path d="M506.967,224.125l30.642,30.641l-195.633,195.633c-9.106,9.106 -23.892,9.106 -32.999,-0l-14.142,-14.142c-9.106,-9.106 -9.106,-23.893 0,-32.999l179.134,-179.133c9.106,-9.107 23.892,-9.107 32.998,-0Z" style="fill:#c50044;"/>
+            </g>
+            <g>
+                <path d="M514.824,373.403l14.142,14.142c9.106,9.106 9.106,23.892 0,32.998l-195.633,195.633l-30.641,-30.641c-9.106,-9.106 -9.106,-23.892 0,-32.999l179.134,-179.133c9.106,-9.106 23.892,-9.106 32.998,-0Z" style="fill:#fff;"/>
+            </g>
+        </g>
+    </g>
+</svg>
