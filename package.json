@@ -12,17 +12,17 @@
     "prepare": "npm run build",
     "format": "prettier --write src",
     "release": "release-it",
-    "pretest": "npm run build",
     "update:latest": "ncu --upgrade --interactive",
     "update:minor": "ncu --upgrade --interactive --target minor",
     "update:pnpm": "corepack up",
-    "test": "rimraf test/*.png test/*.iso test/*-opt.svg && node dist/cli.js test"
+    "test": "rimraf test/*.png test/*.iso test/*-opt.svg && tsx src/cli.js test"
   },
   "keywords": [
     "icons",
     "favicon",
     "ios",
-    "android"
+    "android",
+    "manifest"
   ],
   "files": [
     "dist"
@@ -48,6 +48,7 @@
     "prettier": "^3.3.3",
     "release-it": "^17.6.0",
     "rimraf": "^6.0.1",
+    "tsx": "^4.16.3",
     "typescript": "^5.5.4"
   },
   "packageManager": "pnpm@8.15.9+sha512.499434c9d8fdd1a2794ebf4552b3b25c0a633abcee5bb15e7b5de90f32f47b513aca98cd5cfd001c31f0db454bc3804edccd578501e4ca293a6816166bbd9f81",
