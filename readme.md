@@ -11,15 +11,17 @@ effective-favicon <directory>
 The command expects one or more SVG files within the specified directory. It generates various output files using the same base name with different postfixes and extensions. For example:
 
 ### Source
-`icon-mybrand.svg`
+
+`awesome-company.svg`
 
 ### Output
-- **Optimized SVG Icon:** `icon-opt.svg` - an optimized version of the source SVG.
-- **Classic Favicon:** `icon-mybrand.ico` - includes 16px and 32px icons.
-- **Apple Touch Icon:** `icon-mybrand-180.png`
+
+- **Optimized SVG Icon:** `awesome-company-opt.svg` - an optimized version of the source SVG.
+- **Classic Favicon:** `awesome-company.ico` - includes 16px and 32px icons.
+- **Apple Touch Icon:** `awesome-company-180.png`
 - **Web Manifest Icons:**
-  - `icon-mybrand-192.png`
-  - `icon-mybrand-512.png`
+  - `awesome-company-192.png`
+  - `awesome-company-512.png`
 
 ## Tech Stack
 
