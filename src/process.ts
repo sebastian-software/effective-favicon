@@ -107,7 +107,7 @@ async function generateReactComponent(
   const touchIconLinks = touchIconPaths
     .map(
       (filePath, index) =>
-        `<link rel="apple-touch-icon" href={touchIcon${touchIconSizes[index]}}>`
+        `<link rel="apple-touch-icon" href={touchIcon${touchIconSizes[index]}}  />`
     )
     .join("\n  ")
 
@@ -117,11 +117,13 @@ async function generateReactComponent(
   import icoPath from "./${path.basename(favIconPath)}"
   ${touchIconPathsImports}
 
-  function Favicon() {
-    <link rel="icon" href={icoPath} sizes="32x32">
-    <link rel="icon" href={svgPath} type="image/svg+xml">
+  export function Favicon() {
+  return (<>
+    <link rel="icon" href={icoPath} sizes="32x32" />
+    <link rel="icon" href={svgPath} type="image/svg+xml" />
     ${touchIconLinks}
-    <link rel="manifest" href={appManifestPath}>
+    <link rel="manifest" href={appManifestPath} />
+    </>)
   }`
 
   const fileDir = path.dirname(filePrefix)
