@@ -1,27 +1,32 @@
-## Effective Favicon Generator
+# Effective Favicon Generator
 
-A small generator for a modern set of typical favicons. Expected a folder of svg files (only one is okay as well) and generates the variants suggested by [How to Favicon in 2023: Six files that fit most needs](https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs) automatically.
+A compact tool for generating a comprehensive set of modern favicons. Simply provide a folder containing SVG files (a single SVG file is also acceptable), and the generator will automatically produce the recommended favicon variants based on [How to Favicon in 2024: Six files that fit most needs](https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs).
 
 ## Usage
 
-`effective-favicon <directory>`
+```bash
+effective-favicon <directory>
+```
 
-Expects one or many SVG files somewhere in this directory. It writes all output files using the same base name but with different postfixes/extensions e.g.:
+The command expects one or more SVG files within the specified directory. It generates various output files using the same base name with different postfixes and extensions. For example:
 
-Source: `icon-myproduct.svg`
-Output:
+### Source
+`icon-mybrand.svg`
 
-- SVG Icon: `icon-opt.svg` optimized SVG of source image.
-- Classic Favicon: `icon-myproduct.ico` with 16px and 32px icons embedded.
-- Apple Touch Icon: `icon-myproduct-180.png`
-- Web Manifest: `icon-myproduct-192.png` + `icon-myproduct-512.png`
+### Output
+- **Optimized SVG Icon:** `icon-opt.svg` - an optimized version of the source SVG.
+- **Classic Favicon:** `icon-mybrand.ico` - includes 16px and 32px icons.
+- **Apple Touch Icon:** `icon-mybrand-180.png`
+- **Web Manifest Icons:**
+  - `icon-mybrand-192.png`
+  - `icon-mybrand-512.png`
 
 ## Tech Stack
 
-- `sharp` for image resizing/conversion
-- `pngquant` for PNG optimization
-- `png-to-ico` for ICO file generation
-- `svgo` for SVG optimization
+- **sharp:** Used for image resizing and conversion.
+- **pngquant:** Utilized for PNG optimization.
+- **png-to-ico:** Handles ICO file generation.
+- **svgo:** Ensures SVG optimization.
 
 ## License
 
@@ -31,4 +36,4 @@ Output:
 
 <img src="https://cdn.rawgit.com/sebastian-software/sebastian-software-brand/0d4ec9d6/sebastiansoftware-en.svg" alt="Logo of Sebastian Software GmbH, Mainz, Germany" width="460" height="160"/>
 
-Copyright 2023<br/>[Sebastian Software GmbH](https://www.sebastian-software.de)
+Copyright 2023-2024<br/>[Sebastian Software GmbH](https://www.sebastian-software.de)
