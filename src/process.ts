@@ -12,7 +12,16 @@ export const DEFAULTS = {
   IOS_PADDING_COLOR: { r: 0, g: 0, b: 0, alpha: 0 },
   PNG_QUALITY: "80-90",
   MANIFEST_ICON_SIZES: [192, 512],
-  APPLE_ICON_SIZES: [180],
+  APPLE_ICON_SIZES: [
+    // most iPads
+    152,
+
+    // pro iPads
+    167,
+
+    // most iPhones
+    180
+  ],
   FAV_ICON_SIZES: [16, 32]
 }
 
@@ -31,36 +40,126 @@ export async function optimizePng(filePath: string, options: OPTIONS) {
   })
 }
 
-export async function processSvgFile(filePath: string, options: OPTIONS) {
+export async function processSingleSvgFile(filePath: string, options: OPTIONS) {
   try {
     const fileName = path.basename(filePath, ".svg")
     const fileDir = path.dirname(filePath)
 
-    const fileBase = path.join(fileDir, fileName)
+    const filePrefix = path.join(fileDir, fileName)
 
     const rawSvg = await fs.readFile(filePath, "utf-8")
     const svgContent = optimize(rawSvg).data
 
     // Save the optimized SVG with a "-opt" postfix
-    const optimizedSvgFilePath = `${fileBase}-opt.svg`
+    const optimizedSvgFilePath = `${filePrefix}-opt.svg`
     await fs.writeFile(optimizedSvgFilePath, svgContent)
 
     // Generate bitmap images
-    await generateWebManifest(fileBase, svgContent, options)
-    await generateClassicFavicon(fileBase, svgContent, options)
-    await generateAppleTouchIcon(fileBase, svgContent, options)
+    const manifestPath = await generateWebManifest(
+      filePrefix,
+      svgContent,
+      options
+    )
+    const favIconPath = await generateClassicFavicon(
+      filePrefix,
+      svgContent,
+      options
+    )
+    const touchIconPaths = await generateAppleTouchIcons(
+      filePrefix,
+      svgContent,
+      options
+    )
+
+    await generateReactComponent(
+      filePrefix,
+      optimizedSvgFilePath,
+      manifestPath,
+      favIconPath,
+      touchIconPaths
+    )
   } catch (err) {
     console.error(`Error processing file ${filePath}: `, err)
   }
 }
 
+function toPascalCase(str: string) {
+  return str
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join("")
+}
+
+async function generateReactComponent(
+  filePrefix: string,
+  optimizedSvgFilePath: string,
+  manifestPath: string,
+  favIconPath: string,
+  touchIconPaths: string[]
+) {
+  const touchIconSizes = touchIconPaths.map((path) => path.match(/\d+/)![0])
+  const touchIconPathsImports = touchIconPaths
+    .map(
+      (filePath, index) =>
+        `import touchIcon${touchIconSizes[index]} from "./${path.basename(filePath)}"`
+    )
+    .join("\n")
+  const touchIconLinks = touchIconPaths
+    .map(
+      (filePath, index) =>
+        `<link rel="apple-touch-icon" href={touchIcon${touchIconSizes[index]}}>`
+    )
+    .join("\n  ")
+
+  const code = `
+  import appManifestPath from "./${path.basename(manifestPath)}"
+  import svgPath from "./${path.basename(optimizedSvgFilePath)}"
+  import icoPath from "./${path.basename(favIconPath)}"
+  ${touchIconPathsImports}
+
+  function Favicon() {
+    <link rel="icon" href={icoPath} sizes="32x32">
+    <link rel="icon" href={svgPath} type="image/svg+xml">
+    ${touchIconLinks}
+    <link rel="manifest" href={appManifestPath}>
+  }`
+
+  const fileDir = path.dirname(filePrefix)
+  const fileBase = path.basename(filePrefix)
+  const fileBasePascalCase = toPascalCase(fileBase)
+
+  const reactFileName = `${path.join(fileDir, fileBasePascalCase)}.tsx`
+  await fs.writeFile(reactFileName, code)
+}
+
+export interface WebManifestIcon {
+  src: string
+  type: string
+  sizes: string
+}
+
+export interface WebManifest {
+  icons: WebManifestIcon[]
+}
+
 async function generateWebManifest(
-  fileBase: string,
+  filePrefix: string,
   svgContent: string,
   options: OPTIONS
 ) {
+  const data: WebManifest = {
+    icons: []
+  }
+
   for (const size of options.MANIFEST_ICON_SIZES) {
-    const pngFilePath = `${fileBase}-${size}.png`
+    const pngFilePath = `${filePrefix}-pwa-${size}.png`
+    const pngfilePrefix = path.basename(pngFilePath)
+
+    data.icons.push({
+      src: pngfilePrefix,
+      type: "image/png",
+      sizes: `${size}x${size}`
+    })
 
     await sharp(Buffer.from(svgContent))
       .resize(size, size)
@@ -69,10 +168,15 @@ async function generateWebManifest(
 
     await optimizePng(pngFilePath, options)
   }
+
+  const manifestPath = `${filePrefix}.webmanifest`
+  await fs.writeFile(manifestPath, JSON.stringify(data, null, 2))
+
+  return manifestPath
 }
 
 async function generateClassicFavicon(
-  fileBase: string,
+  filePrefix: string,
   svgContent: string,
   options: OPTIONS
 ) {
@@ -84,16 +188,21 @@ async function generateClassicFavicon(
 
   // Create ICO FILE based on different source images
   const icoBuffer = await ico(favBuffer)
-  await fs.writeFile(`${fileBase}.ico`, icoBuffer)
+  const icoFileName = `${filePrefix}.ico`
+  await fs.writeFile(icoFileName, icoBuffer)
+
+  return icoFileName
 }
 
-async function generateAppleTouchIcon(
-  fileBase: string,
+async function generateAppleTouchIcons(
+  filePrefix: string,
   svgContent: string,
   options: OPTIONS
 ) {
+  const imagePaths: string[] = []
   for (const size of options.APPLE_ICON_SIZES) {
-    const pngFilePath = `${fileBase}-${size}.png`
+    const pngFilePath = `${filePrefix}-apple-${size}.png`
+    imagePaths.push(pngFilePath)
 
     await sharp(Buffer.from(svgContent))
       .resize(size, size)
@@ -102,6 +211,8 @@ async function generateAppleTouchIcon(
 
     await optimizePng(pngFilePath, options)
   }
+
+  return imagePaths
 }
 
 export async function processSvgFiles(dirPath: string, options = DEFAULTS) {
@@ -112,7 +223,7 @@ export async function processSvgFiles(dirPath: string, options = DEFAULTS) {
     if (stat && stat.isDirectory()) {
       processSvgFiles(filePath, options)
     } else if (path.extname(file) === ".svg" && !file.endsWith("-opt.svg")) {
-      await processSvgFile(filePath, options)
+      await processSingleSvgFile(filePath, options)
     }
   }
 }
