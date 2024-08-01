@@ -1,7 +1,14 @@
 import { main } from "@effective/eslint-config"
 
 export default [
-  main
+  {
+    ...main,
 
-  // room for custom overrides
+    rules: {
+      ...main.rules,
+
+      "@typescript-eslint/no-magic-numbers": "off",
+      "unicorn/prevent-abbreviations": "off"
+    }
+  }
 ]

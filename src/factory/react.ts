@@ -1,5 +1,6 @@
-import path from "path"
-import { promises as fs } from "fs"
+import { promises as fs } from "node:fs"
+import path from "node:path"
+
 import { format } from "prettier"
 
 function toPascalCase(str: string) {
@@ -17,7 +18,7 @@ export async function generateReactComponent(
   touchIconPaths: string[]
 ) {
   const touchIconSizes = touchIconPaths.map(
-    (path) => path.match(/(\d+)\.png/)![1]
+    (path) => /(\d+)\.png/.exec(path)![1]
   )
   const touchIconImports = touchIconPaths
     .map((filePath, index) => {

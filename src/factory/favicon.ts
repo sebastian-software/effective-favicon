@@ -1,6 +1,7 @@
 import sharp from "sharp"
 import { sharpsToIco } from "sharp-ico"
-import { Options } from "../options.js"
+
+import type { Options } from "../options.js"
 
 export async function generateFavicon(
   filePrefix: string,

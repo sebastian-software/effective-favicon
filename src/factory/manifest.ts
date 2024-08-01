@@ -1,10 +1,12 @@
-import sharp from "sharp"
-import { basename } from "path"
-import { promises as fs } from "fs"
-import { optimizePng } from "../helper.js"
-import { WebManifest, WebManifestIcon } from "../types.js"
+import { promises as fs } from "node:fs"
+import { basename } from "node:path"
+
 import { readPackageUp } from "read-package-up"
-import { Options } from "../options.js"
+import sharp from "sharp"
+
+import { optimizePng } from "../helper.js"
+import type { Options } from "../options.js"
+import type { WebManifest, WebManifestIcon } from "../types.js"
 
 export async function generateWebManifest(
   filePrefix: string,

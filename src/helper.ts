@@ -1,6 +1,8 @@
-import { exec } from "child_process"
+import { exec } from "node:child_process"
+
 import pngquant from "pngquant-bin"
-import { Options } from "./options.js"
+
+import type { Options } from "./options.js"
 
 export async function optimizePng(filePath: string, options: Options) {
   return new Promise<void>((resolve, reject) => {

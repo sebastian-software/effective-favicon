@@ -1,11 +1,13 @@
-import { promises as fs } from "fs"
-import * as path from "path"
-import { generateReactComponent } from "./factory/react.js"
-import { generateWebManifest } from "./factory/manifest.js"
+import { promises as fs } from "node:fs"
+import * as path from "node:path"
+
 import { generateAppleTouchIcons } from "./factory/apple.js"
 import { generateFavicon } from "./factory/favicon.js"
+import { generateWebManifest } from "./factory/manifest.js"
+import { generateReactComponent } from "./factory/react.js"
 import { generateOptimizedSvg } from "./factory/svg.js"
-import { DEFAULTS, Options } from "./options.js"
+import type { Options } from "./options.js";
+import { DEFAULTS } from "./options.js"
 
 export async function processSvgFile(filePath: string, options: Options) {
   try {
@@ -41,7 +43,7 @@ export async function processSvgFile(filePath: string, options: Options) {
       touchIconPaths
     )
   } catch (error) {
-    console.error(`Error processing file ${filePath}: `, error)
+    console.error(`Error processing file ${filePath}:`, error)
   }
 }
 

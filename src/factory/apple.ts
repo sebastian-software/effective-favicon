@@ -1,6 +1,7 @@
 import sharp from "sharp"
+
 import { optimizePng } from "../helper.js"
-import { Options } from "../options.js"
+import type { Options } from "../options.js"
 
 export async function generateAppleTouchIcons(
   filePrefix: string,
