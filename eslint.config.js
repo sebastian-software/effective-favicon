@@ -8,7 +8,9 @@ export default [
       ...main.rules,
 
       "@typescript-eslint/no-magic-numbers": "off",
-      "unicorn/prevent-abbreviations": "off"
+      "@typescript-eslint/naming-convention": "off",
+      "unicorn/prevent-abbreviations": "off",
+      "no-await-in-loop": "off"
     }
   }
 ]
