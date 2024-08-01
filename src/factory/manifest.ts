@@ -42,7 +42,7 @@ export async function generateWebManifest(
   }
 
   const manifestPath = `${filePrefix}.webmanifest`
-  await fs.writeFile(manifestPath, JSON.stringify(manifestData, null, 2))
+  await fs.writeFile(manifestPath, JSON.stringify(manifestData, undefined, 2))
 
   return manifestPath
 }

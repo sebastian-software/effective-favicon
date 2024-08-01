@@ -6,4 +6,4 @@ if (args.length !== 1) {
   process.exit(1)
 }
 
-processSvgFiles(args[0]).catch(console.error)
+await processSvgFiles(args[0])
