@@ -2,12 +2,12 @@ import { promises as fs } from "fs"
 import * as path from "path"
 import { optimize } from "svgo"
 import sharp from "sharp"
-import ico from "png-to-ico"
 import { exec } from "child_process"
 import pngquant from "pngquant-bin"
 import { format } from "prettier"
 import { readPackageUp } from "read-package-up"
 import { WebManifest, WebManifestIcon } from "./types.js"
+import { sharpsToIco } from "sharp-ico"
 
 export const DEFAULTS = {
   MAX_IOS_IMAGE_SIZE: 180,
@@ -189,16 +189,17 @@ async function generateClassicFavicon(
   svgContent: string,
   options: OPTIONS
 ) {
-  const favBuffer = await Promise.all(
-    options.FAV_ICON_SIZES.map((size) => {
-      return sharp(Buffer.from(svgContent)).resize(size, size).png().toBuffer()
-    })
-  )
+  const svgBuffer = [sharp(Buffer.from(svgContent))]
 
   // Create ICO FILE based on different source images
-  const icoBuffer = await ico(favBuffer)
   const icoFileName = `${filePrefix}.ico`
-  await fs.writeFile(icoFileName, icoBuffer)
+  const icoResult = await sharpsToIco(svgBuffer, icoFileName, {
+    sizes: options.FAV_ICON_SIZES,
+    resizeOptions: {
+      fit: "cover",
+      background: options.IOS_PADDING_COLOR
+    }
+  })
 
   return icoFileName
 }

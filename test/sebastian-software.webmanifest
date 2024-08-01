@@ -1,4 +1,10 @@
 {
+  "name": "@effective/favicon",
+  "short_name": "@effective/favicon",
+  "description": "Effective Favicon Generator",
+  "start_url": ".",
+  "scope": "/",
+  "display": "standalone",
   "icons": [
     {
       "src": "sebastian-software-pwa-192.png",
