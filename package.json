@@ -11,6 +11,8 @@
     "build": "rimraf dist && tsc",
     "prepare": "npm run build",
     "format": "prettier --write src",
+    "lint": "eslint src",
+    "lint:fix": "eslint --fix src",
     "release": "release-it",
     "update:latest": "ncu --upgrade --interactive",
     "update:minor": "ncu --upgrade --interactive --target minor",
@@ -42,8 +44,10 @@
     "access": "public"
   },
   "devDependencies": {
+    "@effective/eslint-config": "^5.4.7",
     "@types/node": "^20.14.13",
     "@types/pngquant-bin": "^4.0.2",
+    "eslint": "^8.57.0",
     "npm-check-updates": "^16.14.20",
     "release-it": "^17.6.0",
     "rimraf": "^6.0.1",
