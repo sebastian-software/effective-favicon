@@ -52,9 +52,10 @@
   },
   "packageManager": "pnpm@8.15.9+sha512.499434c9d8fdd1a2794ebf4552b3b25c0a633abcee5bb15e7b5de90f32f47b513aca98cd5cfd001c31f0db454bc3804edccd578501e4ca293a6816166bbd9f81",
   "dependencies": {
-    "prettier": "^3.3.3",
     "png-to-ico": "^2.1.8",
     "pngquant-bin": "^9.0.0",
+    "prettier": "^3.3.3",
+    "read-package-up": "^11.0.0",
     "sharp": "^0.33.4",
     "svgo": "^3.3.2"
   }

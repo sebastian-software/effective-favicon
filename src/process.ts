@@ -6,6 +6,8 @@ import ico from "png-to-ico"
 import { exec } from "child_process"
 import pngquant from "pngquant-bin"
 import { format } from "prettier"
+import { readPackageUp } from "read-package-up"
+import { WebManifest, WebManifestIcon } from "./types.js"
 
 export const DEFAULTS = {
   MAX_IOS_IMAGE_SIZE: 180,
@@ -141,30 +143,28 @@ async function generateReactComponent(
   await fs.writeFile(reactFileName, formattedCode)
 }
 
-export interface WebManifestIcon {
-  src: string
-  type: string
-  sizes: string
-}
-
-export interface WebManifest {
-  icons: WebManifestIcon[]
-}
-
 async function generateWebManifest(
   filePrefix: string,
   svgContent: string,
   options: OPTIONS
 ) {
+  const pkg = await readPackageUp()
+  const icons: WebManifestIcon[] = []
   const data: WebManifest = {
-    icons: []
+    name: pkg?.packageJson.name,
+    short_name: pkg?.packageJson.name,
+    description: pkg?.packageJson.description,
+    start_url: ".",
+    scope: "/",
+    display: "standalone",
+    icons
   }
 
   for (const size of options.MANIFEST_ICON_SIZES) {
     const pngFilePath = `${filePrefix}-pwa-${size}.png`
     const pngfilePrefix = path.basename(pngFilePath)
 
-    data.icons.push({
+    icons.push({
       src: pngfilePrefix,
       type: "image/png",
       sizes: `${size}x${size}`
