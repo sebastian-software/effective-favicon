@@ -6,7 +6,7 @@ import { generateFavicon } from "./factory/favicon.js"
 import { generateWebManifest } from "./factory/manifest.js"
 import { generateReactComponent } from "./factory/react.js"
 import { generateOptimizedSvg } from "./factory/svg.js"
-import type { Options } from "./options.js";
+import type { Options } from "./options.js"
 import { DEFAULTS } from "./options.js"
 
 export async function processSvgFile(filePath: string, options: Options) {
@@ -52,8 +52,8 @@ export async function processSvgFiles(dirPath: string, options = DEFAULTS) {
   for (const file of files) {
     const filePath = path.join(dirPath, file)
     const stat = await fs.stat(filePath)
-    if (stat && stat.isDirectory()) {
-      processSvgFiles(filePath, options)
+    if (stat.isDirectory()) {
+      await processSvgFiles(filePath, options)
     } else if (path.extname(file) === ".svg" && !file.endsWith("-opt.svg")) {
       await processSvgFile(filePath, options)
     }

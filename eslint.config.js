@@ -10,6 +10,7 @@ export default [
       "@typescript-eslint/no-magic-numbers": "off",
       "@typescript-eslint/naming-convention": "off",
       "unicorn/prevent-abbreviations": "off",
+      "unicorn/import-style": "off",
       "no-await-in-loop": "off"
     }
   }
