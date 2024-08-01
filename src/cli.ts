@@ -1,4 +1,4 @@
-import { processSvgFiles } from "./process.js"
+import { processSvgFiles } from "./index.js"
 
 const args = process.argv.slice(2)
 if (args.length !== 1) {
