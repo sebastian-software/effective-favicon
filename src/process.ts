@@ -5,6 +5,7 @@ import sharp from "sharp"
 import ico from "png-to-ico"
 import { exec } from "child_process"
 import pngquant from "pngquant-bin"
+import { format } from "prettier"
 
 export const DEFAULTS = {
   MAX_IOS_IMAGE_SIZE: 180,
@@ -97,19 +98,23 @@ async function generateReactComponent(
   favIconPath: string,
   touchIconPaths: string[]
 ) {
-  const touchIconSizes = touchIconPaths.map((path) => path.match(/\d+/)![0])
+  // FIXME: Letzte Zahlen matchen... nicht erste... hier mit "favicon2" wurde es vorher immer "2".
+  const touchIconSizes = touchIconPaths.map(
+    (path) => path.match(/(\d+)\.png/)![1]
+  )
   const touchIconPathsImports = touchIconPaths
-    .map(
-      (filePath, index) =>
-        `import touchIcon${touchIconSizes[index]} from "./${path.basename(filePath)}"`
-    )
+    .map((filePath, index) => {
+      const size = touchIconSizes[index]
+      return `import touchIcon${size} from "./${path.basename(filePath)}"`
+    })
     .join("\n")
+
   const touchIconLinks = touchIconPaths
-    .map(
-      (filePath, index) =>
-        `<link rel="apple-touch-icon" href={touchIcon${touchIconSizes[index]}}  />`
-    )
-    .join("\n  ")
+    .map((filePath, index) => {
+      const size = touchIconSizes[index]
+      return `<link rel="apple-touch-icon" sizes="${size}x${size}" href={touchIcon${size}}  />`
+    })
+    .join("\n")
 
   const code = `
   import appManifestPath from "./${path.basename(manifestPath)}"
@@ -130,8 +135,10 @@ async function generateReactComponent(
   const fileBase = path.basename(filePrefix)
   const fileBasePascalCase = toPascalCase(fileBase)
 
+  const formattedCode = await format(code, { parser: "typescript" })
+
   const reactFileName = `${path.join(fileDir, fileBasePascalCase)}.tsx`
-  await fs.writeFile(reactFileName, code)
+  await fs.writeFile(reactFileName, formattedCode)
 }
 
 export interface WebManifestIcon {
