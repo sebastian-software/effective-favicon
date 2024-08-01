@@ -117,17 +117,17 @@ async function generateReactComponent(
     .join("\n")
 
   const code = `
-  import appManifestPath from "./${path.basename(manifestPath)}"
-  import svgPath from "./${path.basename(optimizedSvgFilePath)}"
   import icoPath from "./${path.basename(favIconPath)}"
+  import appManifestPath from "./${path.basename(manifestPath)}"
   ${touchIconPathsImports}
+  import svgPath from "./${path.basename(optimizedSvgFilePath)}"
 
   export function Favicon() {
   return (<>
     <link rel="icon" href={icoPath} sizes="32x32" />
+    <link rel="manifest" href={appManifestPath} />
     <link rel="icon" href={svgPath} type="image/svg+xml" />
     ${touchIconLinks}
-    <link rel="manifest" href={appManifestPath} />
     </>)
   }`
 
