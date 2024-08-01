@@ -193,7 +193,7 @@ async function generateClassicFavicon(
 
   // Create ICO FILE based on different source images
   const icoFileName = `${filePrefix}.ico`
-  const icoResult = await sharpsToIco(svgBuffer, icoFileName, {
+  await sharpsToIco(svgBuffer, icoFileName, {
     sizes: options.FAV_ICON_SIZES,
     resizeOptions: {
       fit: "cover",
