@@ -16,9 +16,7 @@ export async function generateWebManifest(
   const pkg = await readPackageUp()
   const icons: WebManifestIcon[] = []
   const manifestData: WebManifest = {
-    name: pkg?.packageJson.name,
-    short_name: pkg?.packageJson.name,
-    description: pkg?.packageJson.description,
+    name: pkg?.packageJson.description,
     start_url: ".",
     scope: "/",
     display: "browser",
