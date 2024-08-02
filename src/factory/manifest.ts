@@ -25,7 +25,7 @@ export async function generateWebManifest(
     icons
   }
 
-  for (const size of options.MANIFEST_ICON_SIZES) {
+  for (const size of options.manifestIconSizes) {
     const pngFilePath = `${filePrefix}-pwa-${size}.png`
     icons.push({
       src: basename(pngFilePath),

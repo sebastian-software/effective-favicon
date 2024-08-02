@@ -11,7 +11,7 @@ export async function generateFavicon(
   const sharpSources = [sharp(Buffer.from(svgContent))]
   const icoFileName = `${filePrefix}.ico`
   await sharpsToIco(sharpSources, icoFileName, {
-    sizes: options.FAV_ICON_SIZES,
+    sizes: options.favIconSizes,
     resizeOptions: {}
   })
 

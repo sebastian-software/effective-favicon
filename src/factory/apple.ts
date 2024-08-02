@@ -9,7 +9,7 @@ export async function generateAppleTouchIcons(
   options: Options
 ) {
   const imagePaths: string[] = []
-  for (const size of options.APPLE_ICON_SIZES) {
+  for (const size of options.appleIconSizes) {
     const pngFilePath = `${filePrefix}-apple-${size}.png`
     imagePaths.push(pngFilePath)
 

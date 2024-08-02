@@ -1,9 +1,38 @@
-import { processSvgFiles } from "./index.js"
+import { program } from "commander"
 
-const args = process.argv.slice(2)
-if (args.length !== 1) {
-  console.error("Usage: effective-favicon <directory>")
-  process.exit(1)
+import { processSvgFiles } from "./index.js"
+import { DEFAULTS } from "./options.js"
+
+function splitList(value: string): number[] {
+  return value.split(",").map(Number)
 }
 
-await processSvgFiles(args[0])
+// Define the command-line options
+program
+  .argument("<fileOrFolder>", "File or folder to process")
+  .option("--png-quality <quality>", "Set PNG quality", DEFAULTS.pngQuality)
+  .option(
+    "--manifest-icon-sizes <sizes>",
+    "Set manifest icon sizes (comma-separated)",
+    splitList,
+    DEFAULTS.manifestIconSizes
+  )
+  .option(
+    "--apple-icon-sizes <sizes>",
+    "Set Apple icon sizes (comma-separated)",
+    splitList,
+    DEFAULTS.appleIconSizes
+  )
+  .option(
+    "--fav-icon-sizes <sizes>",
+    "Set favicon sizes (comma-separated)",
+    splitList,
+    DEFAULTS.favIconSizes
+  )
+  .parse(process.argv)
+
+// Parse and normalize the options
+const options = program.opts<typeof DEFAULTS>()
+const fileOrFolder: string = program.args[0]
+
+await processSvgFiles(fileOrFolder, options)

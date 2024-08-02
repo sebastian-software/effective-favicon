@@ -10,11 +10,13 @@ effective-favicon <directory>
 
 The command expects one or more SVG files within the specified directory. It generates various output files using the same base name with different postfixes and extensions. For example:
 
-### Source
+### Source/Output
+
+Given one source file e.g.:
 
 `awesome-company.svg`
 
-### Output
+these assets are created dynamically in the same folder:
 
 - **Optimized SVG Icon:** `awesome-company-opt.svg` - an optimized version of the source SVG.
 - **Classic Favicon:** `awesome-company.ico` - includes 16px and 32px icons.
@@ -22,13 +24,13 @@ The command expects one or more SVG files within the specified directory. It gen
 - **Web Manifest Icons:**
   - `awesome-company-192.png`
   - `awesome-company-512.png`
+- **ReactComponent:** `AwesomeCompany.tsx` - for registering all created assets
 
 ## Tech Stack
 
-- **sharp:** Used for image resizing and conversion.
-- **pngquant:** Utilized for PNG optimization.
-- **png-to-ico:** Handles ICO file generation.
-- **svgo:** Ensures SVG optimization.
+- **sharp:** Image resizing and conversion
+- **pngquant:** PNG optimization
+- **svgo:** SVG optimization
 
 ## License
 
