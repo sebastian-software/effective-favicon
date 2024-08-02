@@ -10,8 +10,6 @@ effective-favicon <directory>
 
 The command expects one or more SVG files within the specified directory. It generates various output files using the same base name with different postfixes and extensions. For example:
 
-### Source/Output
-
 Given one source file e.g.:
 
 `awesome-company.svg`
@@ -26,11 +24,64 @@ these assets are created dynamically in the same folder:
   - `awesome-company-512.png`
 - **ReactComponent:** `AwesomeCompany.tsx` - for registering all created assets
 
+## Command Line Interface
+
+```sh
+effective-favicon <fileOrFolder> [options]
+```
+
+### Arguments
+
+- `<fileOrFolder>`: The file or folder to process (required).
+
+### Options
+
+- `--png-quality <quality>`: Set PNG quality. Default is `"80-90"`.
+- `--manifest-icon-sizes <sizes>`: Set manifest icon sizes (comma-separated). Default is `"192,512"`.
+- `--apple-icon-sizes <sizes>`: Set Apple icon sizes (comma-separated). Default is `"152,167,180"`.
+- `--fav-icon-sizes <sizes>`: Set favicon sizes (comma-separated). Default is `"16,32"`.
+
+### Examples
+
+#### Basic Usage
+
+Process a file or folder with default settings:
+
+```sh
+effective-favicon myFolder
+```
+
+#### Custom PNG Quality
+
+Specify custom PNG quality:
+
+```sh
+effective-favicon myFolder --png-quality 70-80
+```
+
+#### Custom Icon Sizes
+
+Specify custom icon sizes:
+
+```sh
+effective-favicon myFolder --manifest-icon-sizes 144,256 --apple-icon-sizes 120,144,180 --fav-icon-sizes 16,48
+```
+
+### Help
+
+For more information, use the help flag:
+
+```sh
+effective-favicon --help
+```
+
+This will display detailed usage information and available options.
+
 ## Tech Stack
 
-- **sharp:** Image resizing and conversion
-- **pngquant:** PNG optimization
-- **svgo:** SVG optimization
+- **[sharp](https://sharp.pixelplumbing.com/):** Image resizing and conversion. Sharp is a high-performance image processing library that allows for fast and efficient image manipulation.
+- **[pngquant](https://pngquant.org/):** PNG optimization. pngquant is a command-line utility and library for lossy compression of PNG images, which helps reduce file sizes significantly while maintaining quality.
+- **[svgo](https://github.com/svg/svgo):** SVG optimization. SVGO is a Node.js-based tool for optimizing SVG vector graphics files, reducing their size without compromising quality.
 
 ## License
 
