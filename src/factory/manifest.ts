@@ -1,5 +1,5 @@
 import { promises as fs } from "node:fs"
-import { extname } from "node:path"
+import { basename, extname } from "node:path"
 
 import { readPackageUp } from "read-package-up"
 import sharp from "sharp"
