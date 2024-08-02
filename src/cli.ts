@@ -11,28 +11,33 @@ function splitList(value: string): number[] {
 program
   .argument("<fileOrFolder>", "File or folder to process")
   .option(
-    "--png-quality <quality>",
+    "-p, --png-quality <quality>",
     "Set PNG quality",
     Number,
     DEFAULTS.pngQuality
   )
   .option(
-    "--manifest-icon-sizes <sizes>",
+    "-m, --manifest-icon-sizes <sizes>",
     "Set manifest icon sizes (comma-separated)",
     splitList,
     DEFAULTS.manifestIconSizes
   )
   .option(
-    "--apple-icon-sizes <sizes>",
+    "-a, --apple-icon-sizes <sizes>",
     "Set Apple icon sizes (comma-separated)",
     splitList,
     DEFAULTS.appleIconSizes
   )
   .option(
-    "--fav-icon-sizes <sizes>",
+    "-s, --fav-icon-sizes <sizes>",
     "Set favicon sizes (comma-separated)",
     splitList,
     DEFAULTS.favIconSizes
+  )
+  .option(
+    "--no-inline-manifest-icons",
+    "Disable inlining manifest icons",
+    DEFAULTS.inlineManifestIcons
   )
   .parse(process.argv)
 
