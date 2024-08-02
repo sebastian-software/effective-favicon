@@ -1,6 +1,6 @@
 {
   "name": "@effective/favicon",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "Effective Favicon Generator",
   "bin": {
     "effective-favicon": "dist/cli.js"
