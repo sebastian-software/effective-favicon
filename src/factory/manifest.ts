@@ -21,7 +21,7 @@ export async function generateWebManifest(
     description: pkg?.packageJson.description,
     start_url: ".",
     scope: "/",
-    display: "standalone",
+    display: "browser",
     icons
   }
 
