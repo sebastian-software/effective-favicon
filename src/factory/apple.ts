@@ -1,6 +1,5 @@
 import sharp from "sharp"
 
-import { optimizePng } from "../helper.js"
 import type { Options } from "../options.js"
 
 export async function generateAppleTouchIcons(
@@ -15,10 +14,13 @@ export async function generateAppleTouchIcons(
 
     await sharp(Buffer.from(svgContent))
       .resize(size, size)
-      .png()
+      .png({
+        palette: true,
+        effort: 10,
+        compressionLevel: 9,
+        quality: options.pngQuality
+      })
       .toFile(pngFilePath)
-
-    await optimizePng(pngFilePath, options)
   }
 
   return imagePaths

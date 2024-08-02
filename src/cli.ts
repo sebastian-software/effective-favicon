@@ -10,7 +10,12 @@ function splitList(value: string): number[] {
 // Define the command-line options
 program
   .argument("<fileOrFolder>", "File or folder to process")
-  .option("--png-quality <quality>", "Set PNG quality", DEFAULTS.pngQuality)
+  .option(
+    "--png-quality <quality>",
+    "Set PNG quality",
+    Number,
+    DEFAULTS.pngQuality
+  )
   .option(
     "--manifest-icon-sizes <sizes>",
     "Set manifest icon sizes (comma-separated)",

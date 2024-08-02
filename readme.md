@@ -36,7 +36,7 @@ effective-favicon <fileOrFolder> [options]
 
 ### Options
 
-- `--png-quality <quality>`: Set PNG quality. Default is `"80-90"`.
+- `--png-quality <quality>`: Set PNG quality. Default is `95`.
 - `--manifest-icon-sizes <sizes>`: Set manifest icon sizes (comma-separated). Default is `"192,512"`.
 - `--apple-icon-sizes <sizes>`: Set Apple icon sizes (comma-separated). Default is `"152,167,180"`.
 - `--fav-icon-sizes <sizes>`: Set favicon sizes (comma-separated). Default is `"16,32"`.
@@ -80,7 +80,6 @@ This will display detailed usage information and available options.
 ## Tech Stack
 
 - **[sharp](https://sharp.pixelplumbing.com/):** Image resizing and conversion. Sharp is a high-performance image processing library that allows for fast and efficient image manipulation.
-- **[pngquant](https://pngquant.org/):** PNG optimization. pngquant is a command-line utility and library for lossy compression of PNG images, which helps reduce file sizes significantly while maintaining quality.
 - **[svgo](https://github.com/svg/svgo):** SVG optimization. SVGO is a Node.js-based tool for optimizing SVG vector graphics files, reducing their size without compromising quality.
 
 ## License

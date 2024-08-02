@@ -4,7 +4,6 @@ import { basename } from "node:path"
 import { readPackageUp } from "read-package-up"
 import sharp from "sharp"
 
-import { optimizePng } from "../helper.js"
 import type { Options } from "../options.js"
 import type { WebManifest, WebManifestIcon } from "../types.js"
 
@@ -33,10 +32,13 @@ export async function generateWebManifest(
 
     await sharp(Buffer.from(svgContent))
       .resize(size, size)
-      .png()
+      .png({
+        palette: true,
+        effort: 10,
+        compressionLevel: 9,
+        quality: options.pngQuality
+      })
       .toFile(pngFilePath)
-
-    await optimizePng(pngFilePath, options)
   }
 
   const manifestPath = `${filePrefix}.webmanifest`
